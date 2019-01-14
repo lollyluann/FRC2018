@@ -12,6 +12,7 @@ public class PortMap {
         LEFT_MOTOR_CONTROLLER_FOLLOWER,
         RIGHT_MOTOR_CONTROLLER_LEAD,
         RIGHT_MOTOR_CONTROLLER_FOLLOWER,
+        LIFT_MOTOR_CONTROLLER,
         PCM
     }
     
@@ -29,15 +30,20 @@ public class PortMap {
     public static int portOf(CAN canDevice) {
         switch(canDevice) {
         case LEFT_MOTOR_CONTROLLER_LEAD:
-            return 1;
-        case LEFT_MOTOR_CONTROLLER_FOLLOWER:
             return 2;
-        case RIGHT_MOTOR_CONTROLLER_LEAD:
+        case LEFT_MOTOR_CONTROLLER_FOLLOWER:
             return 3;
-        case RIGHT_MOTOR_CONTROLLER_FOLLOWER:
+        case RIGHT_MOTOR_CONTROLLER_LEAD:
             return 4;
+        case RIGHT_MOTOR_CONTROLLER_FOLLOWER:
+            return 5;
+        case LIFT_MOTOR_CONTROLLER: 
+            return 1;
+        case PCM:
+            return 0;
         default:
             return -1;
         }
     }
+    
 }

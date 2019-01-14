@@ -1,14 +1,35 @@
-import edu.wpi.first.wpilibj.DriverStation;
+package org.usfirst.frc.team5968.robot;
 
-public class Dashboard implements IDashboard{
-	//probably using SmartDashboard for now
-	public AutoMode chooseModeforBOTH() {
-		if (//GET DASHBOARD CHOICE ==AutoMode.SWITCH) {
-			return SWITCH;
-		} else if (//GET DASHBOARD CHOICE ==AutoMode.SCALE) {
-			return SCALE;
-		} else {
-			return LINE;
-		}
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+public class Dashboard implements IDashboard {
+    
+    private SendableChooser<AutoMode> autoChoices;
+    private SendableChooser<FieldPosition> fieldPositions;
+    
+    public Dashboard() {
+        autoChoices = new SendableChooser<>();
+        autoChoices.addDefault("Baseline Mode", AutoMode.LINE);
+        autoChoices.addObject("Switch Mode", AutoMode.SWITCH);
+        autoChoices.addObject("Scale Mode", AutoMode.SCALE);
+        SmartDashboard.putData("Autonomous modes", autoChoices);
+        
+        fieldPositions = new SendableChooser<>();
+        fieldPositions.addDefault("Center", FieldPosition.CENTER);
+        fieldPositions.addObject("Left", FieldPosition.LEFT);
+        fieldPositions.addObject("Right", FieldPosition.RIGHT);
+        SmartDashboard.putData("Field Position", fieldPositions);
+        
+        
+    }
+    
+	public AutoMode chooseModeforBoth() {	    
+		return autoChoices.getSelected();
 	}
+	
+	public FieldPosition getMatchStartingPoint() {
+	    return fieldPositions.getSelected();
+	}
+	
 }
